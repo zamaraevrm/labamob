@@ -11,11 +11,11 @@ interface ContactDao {
     fun getById(id: Long): ContactEntity
 
     @Insert
-    fun insert(todo: ContactEntity): Long
+    fun insert(contact: ContactEntity): Long
 
     @Update
-    fun update(todo: ContactEntity)
+    fun update(contact: ContactEntity)
 
     @Delete
-    fun delete(todo: ContactEntity)
+    fun delete(contact: ContactEntity)
 }

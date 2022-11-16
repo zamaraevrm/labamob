@@ -12,9 +12,9 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="24sp" />
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonAddContact"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/purple_200"
-        android:text=" i " />
+        android:text="ⓘ" />
 </LinearLayout>

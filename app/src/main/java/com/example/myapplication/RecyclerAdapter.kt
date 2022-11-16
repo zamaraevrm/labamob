@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerAdapter(
-    private val list: List<String>,
+    private val list: List<ContactEntity>,
     // передаём коллбек нажатия на кнопку
     private val onItemClick: (id: Int) -> Unit
 ) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
@@ -19,7 +19,7 @@ class RecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textView.text = list[position]
+        holder.textView.text = list[position].first_name + " " + list[position].second_name
         // обработчик нажатия кнопки
         holder.button.setOnClickListener {
             onItemClick(holder.adapterPosition)
@@ -33,6 +33,6 @@ class RecyclerAdapter(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textView = itemView.findViewById<TextView>(R.id.textView)
         // находим кнопку
-        val button = itemView.findViewById<Button>(R.id.button)
+        val button = itemView.findViewById<Button>(R.id.buttonAddContact)
     }
 }
