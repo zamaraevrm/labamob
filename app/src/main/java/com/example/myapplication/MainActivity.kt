@@ -7,7 +7,6 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         contactsList.addAll(contactDatabase.allContacts)
 
         adapter = RecyclerAdapter(contactsList) {
-            val intent = Intent(this, MainActivity2::class.java)
+            val intent = Intent(this, UpdaetCreateContactActivity::class.java)
             startActivity(intent)
         }
 
@@ -35,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         val buttonAddContact = findViewById<Button>(R.id.buttonAddContact)
         buttonAddContact.setOnClickListener{
-            val intent = Intent(this, MainActivity3::class.java)
+            val intent = Intent(this, InfoAboutContactActivity::class.java)
             startActivity(intent)
         }
 
