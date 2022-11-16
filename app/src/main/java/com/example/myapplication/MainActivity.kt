@@ -6,7 +6,8 @@ import androidx.room.Room
 
 class MainActivity : AppCompatActivity() {
 
-
+    private val list = mutableListOf<String>()
+    private lateinit var adapter: RecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

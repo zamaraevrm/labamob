@@ -6,7 +6,7 @@ import java.util.Date
 
 
 @Entity(tableName = "contacts")
-class contactEntity {
+class ContactEntity {
     @PrimaryKey(autoGenerate = true)
     var id: Long? = null
     var first_name: String = ""

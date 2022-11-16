@@ -5,16 +5,16 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [contactEntity::class], version = 1)
-abstract class contactDatabase: RoomDatabase() {
-    abstract fun contactDao(): contactDao
+@Database(entities = [ContactEntity::class], version = 1)
+abstract class ContactDatabase: RoomDatabase() {
+    abstract fun contactDao(): ContactDao
 
     companion object {
 
         @Volatile
-        private var INSTANCE: contactDatabase? = null
+        private var INSTANCE: ContactDatabase? = null
 
-        fun getDatabase(context: Context): contactDatabase {
+        fun getDatabase(context: Context): ContactDatabase {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
             if (INSTANCE == null) {
@@ -27,10 +27,10 @@ abstract class contactDatabase: RoomDatabase() {
             return INSTANCE!!
         }
 
-        private fun buildDatabase(context: Context): contactDatabase {
+        private fun buildDatabase(context: Context): ContactDatabase {
             return Room.databaseBuilder(
                 context.applicationContext,
-                contactDatabase::class.java,
+                ContactDatabase::class.java,
                 "contactdb"
             )
                 .build()
