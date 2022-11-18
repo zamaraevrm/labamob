@@ -5,7 +5,7 @@ import androidx.room.*
 @Dao
 interface ContactDao {
     @get:Query("SELECT * FROM contacts")
-    val allContacts: List<ContactEntity>
+    val getAllContacts: List<ContactEntity>
 
     @Query("SELECT * FROM contacts WHERE id = :id")
     fun getById(id: Long): ContactEntity

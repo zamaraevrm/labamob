@@ -3,11 +3,11 @@ package com.example.myapplication
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class UpdaetCreateContactActivity : AppCompatActivity() {
+class UpdateCreateContactActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.updaet_create_contact_activity)
+        setContentView(R.layout.update_create_contact_activity)
 
 
     }

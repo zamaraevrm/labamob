@@ -5,8 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,10 +25,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        contactsList.addAll(contactDatabase.allContacts)
+        val job = lifecycleScope.launch(Dispatchers.IO){
+            contactsList.addAll(contactDatabase.getAllContacts)
+        }
+        lifecycleScope.launch {
+            job.cancelAndJoin()
+        }
 
         adapter = RecyclerAdapter(contactsList) {
-            val intent = Intent(this, UpdaetCreateContactActivity::class.java)
+            val intent = Intent(this, InfoAboutContactActivity::class.java)
             startActivity(intent)
         }
 
@@ -34,11 +43,12 @@ class MainActivity : AppCompatActivity() {
 
         val buttonAddContact = findViewById<Button>(R.id.buttonAddContact)
         buttonAddContact.setOnClickListener{
-            val intent = Intent(this, InfoAboutContactActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, UpdateCreateContactActivity::class.java)
+//            startActivity(intent)
         }
 
         val editTextSearch = findViewById<EditText>(R.id.editTextTextPersonName)
+
 
     }
 }
