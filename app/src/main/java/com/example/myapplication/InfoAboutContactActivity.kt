@@ -5,7 +5,9 @@ import android.os.Bundle
 
 class InfoAboutContactActivity : AppCompatActivity() {
 
-
+    companion object {
+        const val EXTRA_KEY = "EXTRA"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

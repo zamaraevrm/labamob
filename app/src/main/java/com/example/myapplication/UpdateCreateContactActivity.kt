@@ -9,6 +9,9 @@ class UpdateCreateContactActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.update_create_contact_activity)
 
+        val id = intent.getLongExtra(InfoAboutContactActivity.EXTRA_KEY, -1L)
+        if( id == -1L){
 
+        }
     }
 }

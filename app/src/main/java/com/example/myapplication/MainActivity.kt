@@ -43,8 +43,8 @@ class MainActivity : AppCompatActivity() {
 
         val buttonAddContact = findViewById<Button>(R.id.buttonAddContact)
         buttonAddContact.setOnClickListener{
-//            val intent = Intent(this, UpdateCreateContactActivity::class.java)
-//            startActivity(intent)
+           val intent = Intent(this, UpdateCreateContactActivity::class.java)
+           startActivity(intent)
         }
 
         val editTextSearch = findViewById<EditText>(R.id.editTextTextPersonName)
