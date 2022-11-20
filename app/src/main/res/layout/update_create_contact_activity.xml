@@ -88,6 +88,8 @@
         android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="ДР"
+        android:cursorVisible="false"
+        android:editable="false"
         android:inputType="date"
         app:layout_constraintBottom_toTopOf="@+id/editTextPhone"
         app:layout_constraintEnd_toEndOf="parent"

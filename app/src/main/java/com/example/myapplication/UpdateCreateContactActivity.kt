@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.view.View
 import android.widget.Button
 import android.widget.DatePicker
@@ -12,6 +13,7 @@ import android.widget.TextView
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -45,16 +47,18 @@ class UpdateCreateContactActivity : AppCompatActivity() {
         }
 
         val editTextDate = findViewById<EditText>(R.id.editTextDate)
-        editTextDate.doAfterTextChanged {
-            contact.birthday = Date(it.toString())
-        }
+        editTextDate.setKeyListener(null);
+//        editTextDate.doAfterTextChanged {
+//            contact.birthday = Date(it.toString())
+//        }
+
 
         val editTextPhone = findViewById<EditText>(R.id.editTextPhone)
         editTextPhone.doAfterTextChanged {
             contact.phone = it.toString()
         }
 
-        val textView = findViewById<View>(R.id.textView) as TextView
+        //val textView = findViewById<View>(R.id.textView) as TextView
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
@@ -62,19 +66,27 @@ class UpdateCreateContactActivity : AppCompatActivity() {
 
         val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, month, day ->
             // Display Selected date in textbox
-            textView.text = "You Selected: $day/$month/$year"
+            //textView.text = "You Selected: $day/$month/$year"
+            editTextDate.text = Editable.Factory.getInstance().newEditable("$day/$month/$year")
+
         }, year, month, day)
 
-        dpd.show()
+        editTextDate.setOnClickListener {
+            dpd.show()
+        }
+
+        val job = lifecycleScope.launch(Dispatchers.IO){
+            if(id != -1L){
+                contactDatabase.update(contact)
+            }else{
+                contactDatabase.insert(contact)
+            }
+        }
 
         val buttonAdd = findViewById<Button>(R.id.buttonAdd)
         buttonAdd.setOnClickListener {
-            lifecycleScope.launch(Dispatchers.IO){
-                if(id != -1L){
-                    contactDatabase.update(contact)
-                }else{
-                    contactDatabase.insert(contact)
-                }
+            lifecycleScope.launch{
+                job.cancelAndJoin()
             }
         }
 
@@ -83,6 +95,7 @@ class UpdateCreateContactActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
     }
 
 }
