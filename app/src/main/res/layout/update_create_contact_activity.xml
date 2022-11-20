@@ -13,12 +13,12 @@
         android:layout_marginBottom="21dp"
         android:text="назад"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonDelete"
+        app:layout_constraintEnd_toStartOf="@+id/buttonAdd"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/buttonDelete"
+        android:id="@+id/buttonAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="21dp"
