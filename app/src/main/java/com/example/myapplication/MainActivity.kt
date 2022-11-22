@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             contactsList.addAll(contactDatabase.getAllContacts)
         }
         lifecycleScope.launch {
-            job.cancelAndJoin()
+            job.cancelAndJoin()//
         }
 
         adapter = RecyclerAdapter(contactsList) {
