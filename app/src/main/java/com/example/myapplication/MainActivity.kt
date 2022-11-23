@@ -17,6 +17,10 @@ class MainActivity : AppCompatActivity() {
     private val contactsList = mutableListOf<ContactEntity>()
     private lateinit var adapter: RecyclerAdapter
 
+    companion object {
+        const val EXTRA_KEY = "EXTRA"
+    }
+
     private val contactDatabase by lazy {
         ContactDatabase.getDatabase(this).contactDao()
     }
@@ -34,6 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         adapter = RecyclerAdapter(contactsList) {
             val intent = Intent(this, InfoAboutContactActivity::class.java)
+            intent.putExtra(EXTRA_KEY, contactsList[it].id)
             startActivity(intent)
         }
 

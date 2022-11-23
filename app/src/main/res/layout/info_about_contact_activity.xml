@@ -7,13 +7,13 @@
     tools:context=".UpdateCreateContactActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonModify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="21dp"
         android:text="редактировать"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonAdd"
+        app:layout_constraintEnd_toStartOf="@+id/buttonDelete"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonBack" />
 
@@ -24,12 +24,12 @@
         android:layout_marginBottom="21dp"
         android:text="назад"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/buttonModify"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/buttonAdd"
+        android:id="@+id/buttonDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="21dp"
@@ -37,10 +37,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button" />
+        app:layout_constraintStart_toEndOf="@+id/buttonModify" />
 
     <TextView
-        android:id="@+id/textViewFirstName"
+        android:id="@+id/textViewFirstname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -51,7 +51,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewSecondName"
+        android:id="@+id/textViewSurname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -59,7 +59,7 @@
         android:text="Фамилия:"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewFirstName" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewFirstname" />
 
     <TextView
         android:id="@+id/textViewPhone"
@@ -70,7 +70,7 @@
         android:text="Телефон:"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSecondName" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSurname" />
 
     <TextView
         android:id="@+id/textViewbirthday"
