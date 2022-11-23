@@ -60,7 +60,7 @@ class UpdateCreateContactActivity : AppCompatActivity() {
 
             editTextFirstname.text = Editable.Factory.getInstance().newEditable(contact.firstname)
             editTextSurname.text = Editable.Factory.getInstance().newEditable(contact.surname)
-            editTextDate.text = Editable.Factory.getInstance().newEditable(contact.birthday?.year.toString() + "/" + contact.birthday?.month.toString() + "/" + contact.birthday?.day.toString())
+            editTextDate.text = Editable.Factory.getInstance().newEditable(contact.birthday.toString())
             editTextPhone.text = Editable.Factory.getInstance().newEditable(contact.phone)
         }
 

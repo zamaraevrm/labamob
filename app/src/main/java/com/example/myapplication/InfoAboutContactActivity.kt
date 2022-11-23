@@ -56,12 +56,10 @@ class InfoAboutContactActivity : AppCompatActivity() {
 
         val buttonDelete = findViewById<Button>(R.id.buttonDelete)
         buttonDelete.setOnClickListener {
-            lifecycleScope.launch {
+            lifecycleScope.launch{
                 contactDatabase.delete(contact)
             }
-
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
     }
