@@ -28,31 +28,11 @@ class InfoAboutContactActivity : AppCompatActivity() {
         return format.format(this)
     }
 
+    var contact = ContactEntity()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.info_about_contact_activity)
-
-        val id = intent.getLongExtra(MainActivity.EXTRA_KEY,-1L)
-        var contact = ContactEntity()
-        lifecycleScope.launch(Dispatchers.IO){
-             contact = contactDatabase.getById(id)
-
-            withContext(Dispatchers.Main){
-                val textViewFirstname = findViewById<TextView>(R.id.textViewFirstname)
-                textViewFirstname.text =  contact.firstname
-
-                val textViewSurname = findViewById<TextView>(R.id.textViewSurname)
-                textViewSurname.text = contact.surname
-
-                val textViewBirthday = findViewById<TextView>(R.id.textViewbirthday)
-                textViewBirthday.text = contact.birthday?.toSimpleString().toString()
-
-                val textViewPhone = findViewById<TextView>(R.id.textViewPhone)
-                textViewPhone.text = contact.phone
-            }
-        }
-
-
 
         val buttonBack = findViewById<Button>(R.id.buttonBack)
         buttonBack.setOnClickListener {
@@ -77,5 +57,28 @@ class InfoAboutContactActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val id = intent.getLongExtra(MainActivity.EXTRA_KEY,-1L)
+        lifecycleScope.launch(Dispatchers.IO){
+            contact = contactDatabase.getById(id)
+
+            withContext(Dispatchers.Main){
+                val textViewFirstname = findViewById<TextView>(R.id.textViewFirstname)
+                textViewFirstname.text =  contact.firstname
+
+                val textViewSurname = findViewById<TextView>(R.id.textViewSurname)
+                textViewSurname.text = contact.surname
+
+                val textViewBirthday = findViewById<TextView>(R.id.textViewbirthday)
+                textViewBirthday.text = contact.birthday?.toSimpleString().toString()
+
+                val textViewPhone = findViewById<TextView>(R.id.textViewPhone)
+                textViewPhone.text = contact.phone
+            }
+        }
     }
 }

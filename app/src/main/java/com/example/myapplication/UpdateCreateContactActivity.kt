@@ -16,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 class UpdateCreateContactActivity : AppCompatActivity() {
@@ -62,12 +63,14 @@ class UpdateCreateContactActivity : AppCompatActivity() {
         if( id != -1L){
             lifecycleScope.launch(Dispatchers.IO) {
                 _contact = contactDatabase.getById(id)
-            }
 
-            editTextFirstname.text = Editable.Factory.getInstance().newEditable(_contact.firstname)
-            editTextSurname.text = Editable.Factory.getInstance().newEditable(_contact.surname)
-            editTextDate.text = Editable.Factory.getInstance().newEditable(_contact.birthday?.toSimpleString().toString())
-            editTextPhone.text = Editable.Factory.getInstance().newEditable(_contact.phone)
+                withContext(Dispatchers.Main){
+                    editTextFirstname.text = Editable.Factory.getInstance().newEditable(_contact.firstname)
+                    editTextSurname.text = Editable.Factory.getInstance().newEditable(_contact.surname)
+                    editTextDate.text = Editable.Factory.getInstance().newEditable(_contact.birthday?.toSimpleString().toString())
+                    editTextPhone.text = Editable.Factory.getInstance().newEditable(_contact.phone)
+                }
+            }
         }
 
 
