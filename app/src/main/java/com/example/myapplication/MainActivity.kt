@@ -29,11 +29,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val job = lifecycleScope.launch(Dispatchers.IO){
-            contactsList.addAll(contactDatabase.getAllContacts)
+        val buttonAddContact = findViewById<Button>(R.id.buttonAddContact)
+        buttonAddContact.setOnClickListener{
+           val intent = Intent(this, UpdateCreateContactActivity::class.java)
+           startActivity(intent)
         }
-        lifecycleScope.launch {
-            job.cancelAndJoin()//
+
+        val editTextSearch = findViewById<EditText>(R.id.editTextTextPersonName)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        lifecycleScope.launch(Dispatchers.IO){
+            contactsList.addAll(contactDatabase.getAllContacts)
         }
 
         adapter = RecyclerAdapter(contactsList) {
@@ -45,15 +54,12 @@ class MainActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
-
-        val buttonAddContact = findViewById<Button>(R.id.buttonAddContact)
-        buttonAddContact.setOnClickListener{
-           val intent = Intent(this, UpdateCreateContactActivity::class.java)
-           startActivity(intent)
-        }
-
-        val editTextSearch = findViewById<EditText>(R.id.editTextTextPersonName)
-
-
     }
+
+    override fun onStop() {
+        super.onStop()
+
+        contactsList.clear()
+    }
+
 }
