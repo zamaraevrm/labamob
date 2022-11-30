@@ -53,8 +53,9 @@ class MainActivity : AppCompatActivity() {
         editTextSearch.doOnTextChanged { text, start, before, count ->
 
             lifecycleScope.launch(Dispatchers.IO) {
-                val list = contactDatabase.getAllContacts.filter { (it.firstname.indexOf(text.toString()) != -1) ||
-                                                        (it.surname?.indexOf(text.toString()) != -1)}
+                val list = contactDatabase.getAllContacts.filter {
+                        (it.firstname.contains(text.toString(), true)) ||
+                        (it.surname?.contains(text.toString(), true) ?: false)}
                 contactsList.clear()
                 contactsList.addAll(list)
                 withContext(Dispatchers.Main){
@@ -70,8 +71,8 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.IO){
             contactsList.addAll(contactDatabase.getAllContacts)
             withContext(Dispatchers.Main){
-                val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-                recyclerView.adapter?.notifyDataSetChanged()
+                //val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+                adapter?.notifyDataSetChanged()
             }
         }
 
